@@ -21,6 +21,8 @@ task :publish => [:generate] do
     system "mv _site/* #{tmp}"
     system "git checkout -B gh-pages"
     system "rm -rf *"
+    message = "Delete old static files"
+    system "git commit -am #{message.shellescape}"
     system "mv #{tmp}/* ."
     message = "Site updated at #{Time.now.utc}"
     system "git add ."
